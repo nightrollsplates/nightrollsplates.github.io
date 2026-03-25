@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NightRolls & Plates</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background-color: #111;
+      color: white;
+    }
+    h1 {
+      color: orange;
+    }
+    .btn {
+      background: orange;
+      padding: 10px 20px;
+      border: none;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>NightRolls & Plates 🍔🌯</h1>
+  <p>Best Night Food in Town</p>
+
+  <button class="btn">Order Now</button>
+
+</body>
+</html>
