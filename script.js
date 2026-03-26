@@ -1,108 +1,112 @@
-// script.js - NightRolls & Plates (Smooth & Premium Version)
+// script.js - NightRolls & Plates (Final Premium Version)
 
-// Mobile Menu Toggle
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-const closeMenu = document.getElementById('close-menu');
+document.addEventListener('DOMContentLoaded', () => {
 
-function openMobileMenu() {
-    mobileMenu.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
-}
+    // ==================== MOBILE MENU ====================
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
 
-function closeMobileMenu() {
-    mobileMenu.classList.remove('active');
-    document.body.style.overflow = 'visible';
-}
+    const openMobileMenu = () => {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
 
-// Event Listeners
-hamburger.addEventListener('click', openMobileMenu);
-closeMenu.addEventListener('click', closeMobileMenu);
+    const closeMobileMenu = () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'visible';
+    };
 
-// Close mobile menu when clicking on any link
-const mobileLinks = document.querySelectorAll('.mobile-link');
-mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        closeMobileMenu();
+    hamburger.addEventListener('click', openMobileMenu);
+    closeMenu.addEventListener('click', closeMobileMenu);
+
+    // Close mobile menu when any link is clicked
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
     });
-});
 
-// Smooth scrolling for all anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            e.preventDefault();
+    // ==================== SMOOTH SCROLLING ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
             
-            const headerOffset = 80; // Account for sticky header
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+            if (targetId === '#' || !targetId) return;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+
+                const headerHeight = 90;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ==================== HEADER SCROLL EFFECT (Glass Enhancement) ====================
+    const header = document.querySelector('.header');
+
+    const handleScroll = () => {
+        if (window.scrollY > 60) {
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.18)';
+            header.style.borderBottom = '1px solid rgba(255, 107, 0, 0.2)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.92)';
+            header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)';
+            header.style.borderBottom = '1px solid rgba(255, 107, 0, 0.15)';
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // ==================== KEYBOARD SUPPORT ====================
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape" && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
         }
     });
-});
 
-// Header scroll effect - adds subtle shadow when scrolled
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('.header');
-    
-    if (window.scrollY > 50) {
-        header.style.background = 'rgba(255, 255, 255, 0.96)';
-        header.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.15)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.92)';
-        header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12)';
-    }
-});
-
-// Keyboard support for closing mobile menu (ESC key)
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        closeMobileMenu();
-    }
-});
-
-// Simple loading animation for images (optional enhancement)
-function enhanceImages() {
+    // ==================== IMAGE LOAD ANIMATION ====================
     const images = document.querySelectorAll('img');
     
-    images.forEach((img, index) => {
-        if (img.complete) {
-            img.style.opacity = '1';
-        } else {
-            img.style.transition = 'opacity 0.6s ease';
-            img.style.opacity = '0.6';
-            
-            img.addEventListener('load', () => {
+    const fadeInImages = () => {
+        images.forEach(img => {
+            if (img.complete) {
                 img.style.opacity = '1';
-            });
-        }
+            } else {
+                img.style.transition = 'opacity 0.8s ease';
+                img.style.opacity = '0.7';
+
+                img.addEventListener('load', () => {
+                    img.style.opacity = '1';
+                }, { once: true });
+            }
+        });
+    };
+
+    // Run image enhancement after everything loads
+    window.addEventListener('load', fadeInImages);
+
+    // ==================== OPTIONAL MICRO INTERACTIONS ====================
+    // Add subtle active state to CTA buttons on click
+    document.querySelectorAll('.cta-btn').forEach(btn => {
+        btn.addEventListener('mousedown', () => {
+            btn.style.transform = 'scale(0.96)';
+        });
+        
+        btn.addEventListener('mouseup', () => {
+            btn.style.transform = 'scale(1)';
+        });
     });
-}
 
-// Initialize everything when page loads
-window.addEventListener('load', () => {
-    enhanceImages();
-    
-    // Optional: Add a small welcome console message (for developers)
-    console.log('%cNightRolls & Plates - Premium Late Night Food 🍜🌙', 
-                'color: #FF6B00; font-size: 14px; font-weight: 600;');
+    // Console message for developers
+    console.log('%c🌙 NightRolls & Plates Loaded Successfully | Premium Late Night Food in Noida',
+        'color: #FF6B00; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;');
+
 });
-
-// Prevent any unwanted scrolling issues on mobile
-document.addEventListener('touchmove', (e) => {
-    if (mobileMenu.classList.contains('active')) {
-        // Allow scrolling only inside mobile menu if needed
-    }
-}, { passive: true });
-
-// Performance optimization: Throttle scroll event if needed in future
