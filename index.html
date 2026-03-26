@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Best Late Night Food in Noida 🌙 Freshly made Egg Rolls, Rice Bowls & Omelettes delivered hot till 2AM. Order the Best Egg Roll in Noida from NightRolls & Plates.">
-    <meta name="keywords" content="Late Night Food Noida, Egg Roll in Noida, Best Egg Roll in Noida, egg roll noida, late night food noida, egg fried rice noida">
+    <meta name="description" content="Best Late Night Food in Noida 🌙 Fresh Egg Rolls & Rice Bowls delivered hot till 2AM. Order the Best Egg Roll in Noida from NightRolls & Plates.">
+    <meta name="keywords" content="Late Night Food Noida, Egg Roll in Noida, Best Egg Roll in Noida, late night food noida">
     <title>Best Late Night Food in Noida | NightRolls & Plates</title>
     
     <link rel="icon" href="assets/favicon.png" type="image/png">
@@ -21,11 +21,11 @@
             <nav class="navbar">
                 <div class="logo">
                     <a href="#hero">
-                        <img src="assets/logo.png" alt="NightRolls & Plates - Best Late Night Food in Noida" class="logo-img">
+                        <img src="assets/logo.png" alt="NightRolls & Plates" class="logo-img">
                     </a>
                 </div>
 
-                <ul class="nav-links" id="desktop-nav">
+                <ul class="nav-links">
                     <li><a href="#hero">Home</a></li>
                     <li><a href="#menu">Menu</a></li>
                     <li><a href="#why">Why Us</a></li>
@@ -34,10 +34,8 @@
 
                 <a href="#order" class="cta-btn desktop-cta">Order Now</a>
 
-                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
                 </button>
             </nav>
         </div>
@@ -46,13 +44,10 @@
         <div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-top">
                 <div class="logo">
-                    <a href="#hero">
-                        <img src="assets/logo.png" alt="NightRolls & Plates" class="logo-img">
-                    </a>
+                    <a href="#hero"><img src="assets/logo.png" alt="NightRolls & Plates" class="logo-img"></a>
                 </div>
                 <button class="close-btn" id="close-menu">✕</button>
             </div>
-            
             <ul class="mobile-nav">
                 <li><a href="#hero" class="mobile-link">Home</a></li>
                 <li><a href="#menu" class="mobile-link">Menu</a></li>
@@ -60,150 +55,108 @@
                 <li><a href="#gallery" class="mobile-link">Gallery</a></li>
                 <li><a href="#order" class="mobile-link">Order Now</a></li>
             </ul>
-
-            <div class="mobile-order-section">
-                <p class="mobile-order-text">Order via</p>
-                <a href="https://www.zomato.com" target="_blank" class="platform-btn zomato">Zomato</a>
-                <a href="https://www.swiggy.com" target="_blank" class="platform-btn swiggy">Swiggy</a>
-            </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION with Background Image -->
     <section id="hero" class="hero">
+        <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="hero-badge">🌙 Open Till 2 AM • Noida</div>
+            <div class="hero-badge">🌙 Serving Noida Till 2 AM</div>
             <h1 class="hero-title">
-                Craving Hits Different<br>
-                <span class="highlight">After Midnight</span>
+                Late Night Cravings?<br>
+                <span class="highlight">We Got You.</span>
             </h1>
-            <p class="hero-subtitle">
-                Freshly made Egg Rolls, Rice Bowls &amp; more delivered hot in Noida
-            </p>
+            <p class="hero-subtitle">Fresh Egg Rolls • Rice Bowls • Delivered Hot in 30 Mins</p>
+            
             <button onclick="document.getElementById('order').scrollIntoView({ behavior: 'smooth' })" 
                     class="cta-btn primary-btn">
-                Order Now - Best Egg Roll in Noida
+                Order Now • Best Egg Roll in Noida
             </button>
-            
+
             <div class="hero-trust">
-                <div>⭐ 4.9 (1800+ orders)</div>
-                <div>⚡ 25-35 min delivery</div>
-                <div>🌙 Till 2 AM</div>
+                <span>⭐ 4.9 • 1800+ Orders</span>
+                <span>⚡ 25-35 Min Delivery</span>
+                <span>🌙 Open Till 2 AM</span>
             </div>
         </div>
     </section>
 
-    <!-- MENU SECTION - Premium Look -->
+    <!-- MENU SECTION - Premium + Appetizing -->
     <section id="menu" class="section menu-section">
         <div class="container">
             <div class="section-header">
                 <h2>Signature Menu</h2>
-                <p class="subtitle">Handcrafted with love • Fresh every time</p>
+                <p class="subtitle">Freshly made • Midnight approved</p>
             </div>
 
+            <!-- Midnight Special - Top Featured -->
+            <div class="featured-item">
+                <img src="assets/midnight-special.jpg" alt="Midnight Special Egg Roll - Best Late Night Food in Noida" class="featured-img">
+                <div class="featured-content">
+                    <span class="featured-badge">⭐ MIDNIGHT SPECIAL</span>
+                    <h3>Night Special Egg Roll</h3>
+                    <p>Chef's secret recipe • Loaded with spices & love</p>
+                    <div class="price-row">
+                        <span class="price">₹139</span>
+                        <button class="cta-btn small-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Menu Items -->
             <div class="menu-grid">
-
-                <!-- Rolls Category -->
-                <div class="menu-category premium-card">
-                    <div class="category-header">
-                        <span class="cat-icon">🌯</span>
-                        <h3>Signature Egg Rolls</h3>
-                    </div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Classic Egg Roll</span>
-                                <span class="item-desc">Crispy paratha with spiced egg filling</span>
-                            </div>
-                            <div class="item-price">₹89</div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Double Egg Roll</span>
-                                <span class="item-desc">Double the egg, double the satisfaction</span>
-                            </div>
-                            <div class="item-price">₹119</div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Egg Bhurji Roll</span>
-                                <span class="item-desc">Spicy scrambled egg wrapped fresh</span>
-                            </div>
-                            <div class="item-price">₹129</div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Butter Egg Roll</span>
-                                <span class="item-desc">Rich &amp; buttery flavour</span>
-                            </div>
-                            <div class="item-price">₹119</div>
-                        </div>
-                        <div class="menu-item featured">
-                            <div class="item-info">
-                                <span class="item-name">⭐ Midnight Special Roll</span>
-                                <span class="item-desc">Our chef's secret recipe</span>
-                            </div>
-                            <div class="item-price">₹139</div>
-                        </div>
+                <div class="menu-card">
+                    <img src="assets/classic-roll.jpg" alt="Classic Egg Roll Noida" class="menu-card-img">
+                    <div class="menu-card-info">
+                        <h4>Classic Egg Roll</h4>
+                        <p>Crispy paratha with perfectly spiced egg</p>
+                        <span class="price">₹89</span>
                     </div>
                 </div>
 
-                <!-- Rice Bowls -->
-                <div class="menu-category premium-card">
-                    <div class="category-header">
-                        <span class="cat-icon">🍚</span>
-                        <h3>Rice Bowls</h3>
-                    </div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Egg Fried Rice</span>
-                                <span class="item-desc">Classic street-style</span>
-                            </div>
-                            <div class="item-price">₹129</div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Double Egg Fried Rice</span>
-                                <span class="item-desc">Loaded with extra egg</span>
-                            </div>
-                            <div class="item-price">₹159</div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Butter Egg Rice Bowl</span>
-                                <span class="item-desc">Buttery &amp; aromatic</span>
-                            </div>
-                            <div class="item-price">₹149</div>
-                        </div>
+                <div class="menu-card">
+                    <img src="assets/double-egg-roll.jpg" alt="Double Egg Roll in Noida" class="menu-card-img">
+                    <div class="menu-card-info">
+                        <h4>Double Egg Roll</h4>
+                        <p>Extra generous egg filling</p>
+                        <span class="price">₹119</span>
                     </div>
                 </div>
 
-                <!-- Combos -->
-                <div class="menu-category premium-card">
-                    <div class="category-header">
-                        <span class="cat-icon">🔥</span>
-                        <h3>Value Combos</h3>
+                <div class="menu-card">
+                    <img src="assets/bhurji-roll.jpg" alt="Egg Bhurji Roll Noida" class="menu-card-img">
+                    <div class="menu-card-info">
+                        <h4>Egg Bhurji Roll</h4>
+                        <p>Spicy scrambled egg wrapped fresh</p>
+                        <span class="price">₹129</span>
                     </div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Egg Roll + Plain Omelette</span>
-                            </div>
-                            <div class="item-price">₹159</div>
-                        </div>
-                        <div class="menu-item">
-                            <div class="item-info">
-                                <span class="item-name">Egg Roll + Egg Fried Rice</span>
-                            </div>
-                            <div class="item-price">₹199</div>
-                        </div>
-                        <div class="menu-item featured">
-                            <div class="item-info">
-                                <span class="item-name">Double Egg Roll + Fried Rice</span>
-                            </div>
-                            <div class="item-price">₹229</div>
-                        </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="assets/butter-roll.jpg" alt="Butter Egg Roll Noida" class="menu-card-img">
+                    <div class="menu-card-info">
+                        <h4>Butter Egg Roll</h4>
+                        <p>Rich buttery & delicious</p>
+                        <span class="price">₹119</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="assets/fried-rice.jpg" alt="Egg Fried Rice Noida" class="menu-card-img">
+                    <div class="menu-card-info">
+                        <h4>Egg Fried Rice</h4>
+                        <p>Classic street-style</p>
+                        <span class="price">₹129</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="assets/double-fried-rice.jpg" alt="Double Egg Fried Rice" class="menu-card-img">
+                    <div class="menu-card-info">
+                        <h4>Double Egg Fried Rice</h4>
+                        <p>Loaded with extra egg</p>
+                        <span class="price">₹159</span>
                     </div>
                 </div>
             </div>
@@ -214,24 +167,12 @@
     <section id="why" class="section why-section">
         <div class="container">
             <div class="section-header">
-                <h2>Why NightRolls &amp; Plates?</h2>
+                <h2>Why NightRolls & Plates?</h2>
             </div>
             <div class="why-grid">
-                <div class="why-card">
-                    <div class="icon">🥚</div>
-                    <h3>Freshly Prepared</h3>
-                    <p>Made to order — never pre-cooked</p>
-                </div>
-                <div class="why-card">
-                    <div class="icon">🚀</div>
-                    <h3>Lightning Fast</h3>
-                    <p>25-35 minutes delivery in Noida</p>
-                </div>
-                <div class="why-card">
-                    <div class="icon">🌙</div>
-                    <h3>Late Night Hero</h3>
-                    <p>Serving hot food till 2 AM daily</p>
-                </div>
+                <div class="why-card">🥚 Freshly Made Every Time</div>
+                <div class="why-card">🚀 25-35 Min Delivery</div>
+                <div class="why-card">🌙 Serving Till 2 AM</div>
             </div>
         </div>
     </section>
@@ -244,26 +185,21 @@
             </div>
             <div class="gallery-grid">
                 <img src="assets/roll1.jpg" alt="Best Egg Roll in Noida" loading="lazy">
-                <img src="assets/roll2.jpg" alt="Double Egg Roll - NightRolls & Plates" loading="lazy">
-                <img src="assets/fried-rice.jpg" alt="Egg Fried Rice Bowl Noida" loading="lazy">
-                <img src="assets/butter-roll.jpg" alt="Butter Egg Roll in Noida" loading="lazy">
+                <img src="assets/roll2.jpg" alt="Double Egg Roll Noida" loading="lazy">
+                <img src="assets/fried-rice.jpg" alt="Egg Fried Rice Noida" loading="lazy">
             </div>
         </div>
     </section>
 
-    <!-- ORDER SECTION -->
+    <!-- ORDER SECTION - More Premium -->
     <section id="order" class="section order-section">
         <div class="container">
-            <h2 class="order-title">Ready to Satisfy Your Cravings?</h2>
-            <p class="order-subtitle">Order the Best Late Night Food in Noida right now</p>
+            <h2 class="order-title">Ready to Satisfy Your Midnight Cravings?</h2>
+            <p class="order-subtitle">Hot, fresh & delicious food delivered to your door in Noida</p>
             
             <div class="order-buttons">
-                <a href="https://www.zomato.com" target="_blank" class="platform-btn zomato-btn">
-                    Order on Zomato
-                </a>
-                <a href="https://www.swiggy.com" target="_blank" class="platform-btn swiggy-btn">
-                    Order on Swiggy
-                </a>
+                <a href="https://www.zomato.com" target="_blank" class="platform-btn zomato-btn">Order on Zomato</a>
+                <a href="https://www.swiggy.com" target="_blank" class="platform-btn swiggy-btn">Order on Swiggy</a>
             </div>
         </div>
     </section>
@@ -273,20 +209,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-left">
-                    <div class="logo">
-                        <a href="#hero">
-                            <img src="assets/logo.png" alt="NightRolls & Plates" class="logo-img">
-                        </a>
-                    </div>
-                    <p>Best Late Night Food in Noida • Serving till 2 AM</p>
+                    <img src="assets/logo.png" alt="NightRolls & Plates" class="logo-img">
+                    <p>Best Late Night Food in Noida • Till 2 AM</p>
                 </div>
                 <div class="footer-right">
-                    <p><strong>Location:</strong> Cloud Kitchen, Noida, Uttar Pradesh</p>
-                    <p><strong>Delivery Area:</strong> All major sectors of Noida</p>
+                    <p><strong>Noida, Uttar Pradesh</strong></p>
+                    <p>Serving all major sectors</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 NightRolls &amp; Plates • Made for Midnight Cravings</p>
             </div>
         </div>
     </footer>
