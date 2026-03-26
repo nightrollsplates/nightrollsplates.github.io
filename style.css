@@ -1,5 +1,4 @@
-/* style.css - NightRolls & Plates (Premium Version) */
-
+/* style.css - NightRolls & Plates (Premium Glass + 3D Version) */
 :root {
     --primary: #FF6B00;
     --secondary: #F5B041;
@@ -22,68 +21,81 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER */
+/* ==================== HEADER - Premium Glass ==================== */
 .header {
     position: sticky;
     top: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 107, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     z-index: 1000;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
 }
 
 .navbar {
-    max-width: 1280px;
+    max-width: 1380px;           /* Wider container to fix left/right cutting */
     margin: 0 auto;
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .logo-img {
-    height: 54px;
+    height: 56px;
     width: auto;
     object-fit: contain;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.logo-img:hover {
+    transform: scale(1.12) rotate(6deg);
+    filter: drop-shadow(0 12px 20px rgba(255, 107, 0, 0.35));
+}
+
+/* Navigation */
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 2.8rem;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
     color: var(--primary);
+    transform: translateY(-2px);
 }
 
 .cta-btn {
     background: var(--primary);
     color: white;
-    padding: 13px 32px;
+    padding: 14px 34px;
     border: none;
     border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
 }
 
 .cta-btn:hover {
     background: #e55a00;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(255, 107, 0, 0.4);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 107, 0, 0.45);
 }
 
 .small-btn {
-    padding: 10px 24px;
-    font-size: 1rem;
+    padding: 11px 26px;
+    font-size: 1.02rem;
 }
 
 /* Hamburger */
@@ -95,10 +107,11 @@ body {
 }
 
 .hamburger span {
-    width: 30px;
+    width: 32px;
     height: 3px;
     background: var(--text);
     border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
 /* Mobile Menu */
@@ -109,10 +122,11 @@ body {
     width: 85%;
     max-width: 380px;
     height: 100vh;
-    background: white;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
     box-shadow: -15px 0 40px rgba(0,0,0,0.2);
     z-index: 2000;
-    transition: right 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: right 0.5s cubic-bezier(0.32, 0.72, 0, 1);
     padding: 2rem 1.8rem;
     display: flex;
     flex-direction: column;
@@ -130,56 +144,53 @@ body {
 }
 
 .close-btn {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     background: none;
     border: none;
     cursor: pointer;
+    color: #333;
 }
 
-/* HERO */
+/* ==================== HERO ==================== */
 .hero {
     min-height: 100vh;
     position: relative;
     display: flex;
     align-items: center;
-}
-
-.hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
-                url('assets/hero-bg.jpg') center/cover no-repeat;
-    z-index: -1;
+    background-image: 
+        linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.48) 60%, rgba(0,0,0,0.6)),
+        url('assets/hero-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-content {
-    max-width: 1280px;
+    max-width: 1380px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 2.5rem 0 7.5rem;   /* Left side clean for text */
     color: white;
-    text-align: center;
     z-index: 2;
+    text-align: left;
 }
 
 .hero-badge {
     display: inline-block;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     color: var(--primary);
-    padding: 10px 26px;
+    padding: 11px 28px;
     border-radius: 50px;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.08rem;
 }
 
 .hero-title {
     font-family: 'Playfair Display', sans-serif;
-    font-size: clamp(3.2rem, 8vw, 5.2rem);
+    font-size: clamp(3.3rem, 7.8vw, 5.6rem);
     line-height: 1.05;
-    margin-bottom: 1.2rem;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    margin-bottom: 1.3rem;
+    text-shadow: 0 6px 30px rgba(0,0,0,0.65);
 }
 
 .highlight {
@@ -187,59 +198,59 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    max-width: 700px;
-    margin: 0 auto 2.8rem;
-    opacity: 0.95;
+    font-size: 1.58rem;
+    max-width: 640px;
+    margin-bottom: 3rem;
+    opacity: 0.96;
 }
 
 .primary-btn {
-    font-size: 1.3rem;
-    padding: 16px 44px;
-    margin-bottom: 2.5rem;
+    font-size: 1.38rem;
+    padding: 18px 50px;
+    margin-bottom: 2.8rem;
+    font-weight: 600;
 }
 
 .hero-trust {
     display: flex;
-    justify-content: center;
-    gap: 2.5rem;
+    gap: 3rem;
     flex-wrap: wrap;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 
-/* MENU SECTION */
+/* ==================== MENU SECTION ==================== */
 .menu-section {
     background: #fff8ee;
-    padding: 6rem 0;
+    padding: 7rem 0;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .section-header h2 {
     font-family: 'Playfair Display', sans-serif;
-    font-size: 3rem;
+    font-size: 3.2rem;
 }
 
 .subtitle {
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     color: #555;
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
 }
 
-/* Featured Midnight Special */
+/* Featured Item - Better Fit */
 .featured-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
     background: white;
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-    margin-bottom: 4rem;
+    box-shadow: 0 20px 55px rgba(0,0,0,0.13);
+    margin-bottom: 5rem;
     align-items: center;
 }
 
@@ -247,55 +258,85 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    min-height: 480px;        /* Fixed cutting issue */
 }
 
 .featured-content {
-    padding: 2.8rem 3rem;
+    padding: 3.2rem 3.5rem;
 }
 
 .featured-badge {
     background: var(--primary);
     color: white;
-    padding: 8px 22px;
+    padding: 9px 26px;
     border-radius: 50px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     display: inline-block;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
 }
 
 .featured-content h3 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
+    font-size: 2.4rem;
+    margin-bottom: 1.1rem;
 }
 
 .featured-content p {
     color: #555;
-    margin-bottom: 2rem;
-    font-size: 1.15rem;
+    margin-bottom: 2.4rem;
+    font-size: 1.2rem;
 }
 
 .price-row {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2.2rem;
 }
 
 .price {
-    font-size: 2.3rem;
+    font-size: 2.45rem;
     font-weight: 700;
     color: var(--primary);
 }
 
-/* Menu Categories */
+/* 3D Card Effect - Smooth & Performant */
+.menu-card, 
+.featured-item,
+.why-card,
+.gallery-grid img {
+    transition: all 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
+}
+
+.menu-card:hover,
+.featured-item:hover,
+.why-card:hover,
+.gallery-grid img:hover {
+    transform: perspective(1000px) rotateX(6deg) rotateY(8deg) scale(1.04);
+    box-shadow: 0 30px 70px rgba(255, 107, 0, 0.28);
+}
+
+.menu-card-img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.menu-card:hover .menu-card-img {
+    transform: scale(1.1);
+}
+
+/* Rest of Menu Styles */
 .menu-category {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .category-title {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     color: var(--primary);
-    margin-bottom: 2rem;
+    margin-bottom: 2.2rem;
     padding-bottom: 1rem;
     border-bottom: 3px solid #f5e8d3;
 }
@@ -303,7 +344,7 @@ body {
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2rem;
+    gap: 2.3rem;
 }
 
 .menu-card {
@@ -311,107 +352,80 @@ body {
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    transition: all 0.4s ease;
-}
-
-.menu-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 25px 55px rgba(255, 107, 0, 0.18);
-}
-
-.menu-card-img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.menu-card:hover .menu-card-img {
-    transform: scale(1.08);
 }
 
 .menu-card-info {
-    padding: 1.6rem;
+    padding: 1.7rem;
 }
 
 .menu-card-info h4 {
-    font-size: 1.35rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
 }
 
 .menu-card-info p {
     color: #666;
-    font-size: 0.98rem;
-    margin-bottom: 1.2rem;
-    min-height: 48px;
+    font-size: 0.99rem;
+    margin-bottom: 1.3rem;
+    min-height: 50px;
 }
 
 .price {
-    font-size: 1.5rem;
+    font-size: 1.58rem;
     font-weight: 700;
     color: var(--primary);
 }
 
-/* Combo Cards */
 .combo-card .menu-card-info {
-    padding: 2rem 1.6rem;
+    padding: 2.4rem 1.7rem;
     text-align: center;
 }
 
-.combo-card h4 {
-    margin-bottom: 1.2rem;
-}
-
-/* WHY CHOOSE US */
+/* WHY SECTION */
 .why-section {
-    padding: 6rem 0;
+    padding: 7rem 0;
     background: white;
 }
 
 .why-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    gap: 2.8rem;
 }
 
 .why-card {
     background: white;
-    padding: 3rem 2rem;
+    padding: 3.2rem 2.2rem;
     border-radius: 24px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    transition: all 0.4s ease;
-}
-
-.why-card:hover {
-    transform: translateY(-10px);
 }
 
 .why-icon {
-    font-size: 3.8rem;
-    margin-bottom: 1.5rem;
+    font-size: 4rem;
+    margin-bottom: 1.6rem;
 }
 
 .why-card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
+    font-size: 1.7rem;
+    margin-bottom: 1.1rem;
 }
 
 /* GALLERY */
 .gallery-section {
     background: var(--beige);
-    padding: 5rem 0;
+    padding: 6rem 0;
 }
 
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.8rem;
+    gap: 2rem;
 }
 
 .gallery-grid img {
     width: 100%;
-    height: 280px;
+    height: 285px;
     object-fit: cover;
     border-radius: 24px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -422,111 +436,138 @@ body {
     background: linear-gradient(135deg, var(--primary), #ff8a3d);
     color: white;
     text-align: center;
-    padding: 6rem 0;
+    padding: 7rem 0;
 }
 
 .order-title {
-    font-size: 2.9rem;
-    margin-bottom: 1.2rem;
+    font-size: 3rem;
+    margin-bottom: 1.4rem;
 }
 
 .order-subtitle {
-    font-size: 1.4rem;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-    opacity: 0.95;
+    font-size: 1.48rem;
+    max-width: 640px;
+    margin: 0 auto 3.5rem;
+    opacity: 0.96;
 }
 
 .order-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.8rem;
+    gap: 2rem;
     justify-content: center;
 }
 
 .platform-btn {
-    padding: 18px 40px;
+    padding: 19px 44px;
     border-radius: 50px;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 600;
     text-decoration: none;
-    min-width: 260px;
-    transition: all 0.3s;
+    min-width: 270px;
+    transition: all 0.4s ease;
 }
 
 .zomato-btn { background: #e23744; color: white; }
 .swiggy-btn { background: #fc8019; color: white; }
 
 .platform-btn:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 
 /* FOOTER */
 .footer {
     background: #1a1a1a;
     color: #ddd;
-    padding: 5rem 0 2rem;
+    padding: 5.5rem 0 2.5rem;
 }
 
 .footer-content {
-    max-width: 1280px;
+    max-width: 1380px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 2.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
 }
 
 .footer-left .logo-img {
-    height: 52px;
-    margin-bottom: 1rem;
+    height: 54px;
+    margin-bottom: 1.2rem;
 }
 
 .footer-center, .footer-right {
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 .social-link {
     color: #ddd;
     text-decoration: none;
     display: block;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     transition: color 0.3s;
 }
 
 .social-link:hover {
-    color: #FF6B00;
+    color: var(--primary);
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 4rem;
-    padding-top: 2rem;
+    margin-top: 4.5rem;
+    padding-top: 2.2rem;
     border-top: 1px solid #333;
     opacity: 0.75;
-    font-size: 0.98rem;
+    font-size: 0.99rem;
 }
 
-/* RESPONSIVE */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 992px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .desktop-cta { display: none; }
-    
+   
     .featured-item {
         grid-template-columns: 1fr;
     }
-    
+   
     .footer-content {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-content {
+        padding-left: 2.5rem !important;
+        padding-right: 2.5rem;
+        text-align: center;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 3.4rem;
+    .hero {
+        min-height: 92vh;
+        background-position: center 35%;
     }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
     .menu-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .featured-content {
+        padding: 2.8rem 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+    .primary-btn {
+        padding: 16px 38px;
+        font-size: 1.22rem;
     }
 }
