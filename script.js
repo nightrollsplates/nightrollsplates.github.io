@@ -1,89 +1,121 @@
-// script.js
-// Initialize AOS
+// script.js - NightRolls & Plates
+
 document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 100,
-        easing: 'ease-out-cubic'
-    });
+    
+    // ============== MOBILE MENU ==============
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = document.getElementById('close-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    // Mouse glow effect
-    const glow = document.getElementById('mouse-glow');
-    document.addEventListener('mousemove', (e) => {
-        glow.style.opacity = '1';
-        glow.style.left = `${e.clientX}px`;
-        glow.style.top = `${e.clientY}px`;
-    });
-
-    // Create smoke particles in hero
-    function createSmoke() {
-        const container = document.getElementById('smoke-container');
-        for (let i = 0; i < 28; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'smoke-particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = (30 + Math.random() * 60) + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.animationDuration = (6 + Math.random() * 7) + 's';
-            particle.style.animationDelay = '-' + Math.random() * 8 + 's';
-            particle.style.opacity = Math.random() * 0.6 + 0.2;
-            container.appendChild(particle);
-            
-            // Remove and recreate for infinite loop
-            setTimeout(() => {
-                particle.remove();
-                createSmoke();
-            }, 15000);
-        }
+    // Open Mobile Menu
+    function openMobileMenu() {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
     }
-    createSmoke();
 
-    // 3D tilt for cards (simple vanilla implementation)
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 8;
-            const rotateY = (centerX - x) / 8;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // Close Mobile Menu
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'visible';
+    }
+
+    // Event Listeners
+    hamburger.addEventListener('click', openMobileMenu);
+    closeMenu.addEventListener('click', closeMobileMenu);
+
+    // Close menu when clicking any mobile link
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
         });
+    });
+
+    // Close menu when clicking outside (optional smooth UX)
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            closeMobileMenu();
+        }
+    });
+
+    // ============== SMOOTH SCROLLING ==============
+    const allLinks = document.querySelectorAll('a[href^="#"]');
+    
+    allLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#') return;
+            
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                e.preventDefault();
+                
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY;
+                
+                window.scrollTo({
+                    top: targetPosition - headerHeight - 20,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ============== HEADER SCROLL EFFECT ==============
+    const header = document.querySelector('.header');
+    
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.scrollY;
         
-        card.addEventListener('mouseleave', () => {
-            card.style.transition = 'transform 0.6s ease';
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-            setTimeout(() => {
-                card.style.transition = '';
-            }, 600);
-        });
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scrolling down - hide header slightly
+            header.style.transform = 'translateY(-15px)';
+        } else {
+            // Scrolling up - show header
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScroll = currentScroll;
     });
 
-    // Button ripple effect (already handled via CSS, but JS trigger backup)
-    const rippleButtons = document.querySelectorAll('.ripple-btn');
-    rippleButtons.forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            const rect = this.getBoundingClientRect();
-            const ripple = document.createElement('span');
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255,255,255,0.6)';
-            ripple.style.width = ripple.style.height = '20px';
-            ripple.style.left = `${e.clientX - rect.left}px`;
-            ripple.style.top = `${e.clientY - rect.top}px`;
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'rippleAnim 0.8s linear';
-            this.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 800);
+    // ============== ADD TO CART ANIMATION (Future Ready) ==============
+    const addButtons = document.querySelectorAll('.add-btn');
+    
+    if (addButtons.length > 0) {
+        addButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const originalText = this.textContent;
+                this.textContent = '✓';
+                this.style.background = '#22c55e';
+                this.style.color = 'white';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                    this.style.color = '';
+                }, 1500);
+            });
         });
+    }
+
+    // ============== PERFORMANCE OPTIMIZATION ==============
+    // Lazy load images (already using loading="lazy" in HTML)
+    
+    // Keyboard accessibility for mobile menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape" && mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
     });
 
-    console.log('%c🚀 NightRolls & Plates website loaded — ready to make users hungry!', 'color:#F5B041; font-size:14px; font-weight:700');
+    // ============== FINAL MESSAGE ==============
+    console.log('%c✅ NightRolls & Plates Website Loaded Successfully!', 
+        'color: #FF6B00; font-size: 16px; font-weight: bold;');
+    console.log('%cMobile menu is smooth & ready | Fast loading | SEO Optimized', 
+        'color: #666; font-size: 14px;');
+
 });
