@@ -1,37 +1,37 @@
-// script.js - NightRolls & Plates
+// script.js - NightRolls & Plates (Premium Version)
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // ============== MOBILE MENU ==============
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
-    const closeMenu = document.getElementById('close-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
     // Open Mobile Menu
-    function openMobileMenu() {
+    const openMobileMenu = () => {
         mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
-    }
+        document.body.style.overflow = 'hidden'; // Prevent scrolling behind menu
+    };
 
     // Close Mobile Menu
-    function closeMobileMenu() {
+    const closeMobileMenu = () => {
         mobileMenu.classList.remove('active');
         document.body.style.overflow = 'visible';
-    }
+    };
 
-    // Event Listeners
+    // Event Listeners for Mobile Menu
     hamburger.addEventListener('click', openMobileMenu);
-    closeMenu.addEventListener('click', closeMobileMenu);
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
 
-    // Close menu when clicking any mobile link
+    // Close menu when clicking any link
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             closeMobileMenu();
         });
     });
 
-    // Close menu when clicking outside (optional smooth UX)
+    // Close menu when clicking outside the menu content
     mobileMenu.addEventListener('click', (e) => {
         if (e.target === mobileMenu) {
             closeMobileMenu();
@@ -39,24 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============== SMOOTH SCROLLING ==============
-    const allLinks = document.querySelectorAll('a[href^="#"]');
-    
-    allLinks.forEach(link => {
+    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+
+    smoothScrollLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            
-            if (targetId === '#') return;
-            
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
+
+            if (targetId === '#' || targetId === '') return;
+
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
                 e.preventDefault();
-                
+
                 const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY;
-                
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+
                 window.scrollTo({
-                    top: targetPosition - headerHeight - 20,
+                    top: targetPosition - headerHeight - 30,
                     behavior: 'smooth'
                 });
             }
@@ -65,57 +65,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ============== HEADER SCROLL EFFECT ==============
     const header = document.querySelector('.header');
-    
-    let lastScroll = 0;
-    
+    let lastScrollTop = 0;
+
     window.addEventListener('scroll', () => {
-        const currentScroll = window.scrollY;
-        
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            // Scrolling down - hide header slightly
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > 150) {
+            // Scrolling down - slightly hide header
             header.style.transform = 'translateY(-15px)';
         } else {
             // Scrolling up - show header
             header.style.transform = 'translateY(0)';
         }
-        
-        lastScroll = currentScroll;
+
+        lastScrollTop = scrollTop;
     });
 
-    // ============== ADD TO CART ANIMATION (Future Ready) ==============
-    const addButtons = document.querySelectorAll('.add-btn');
-    
-    if (addButtons.length > 0) {
-        addButtons.forEach(btn => {
-            btn.addEventListener('click', function () {
-                const originalText = this.textContent;
-                this.textContent = '✓';
-                this.style.background = '#22c55e';
-                this.style.color = 'white';
-                
-                setTimeout(() => {
-                    this.textContent = originalText;
-                    this.style.background = '';
-                    this.style.color = '';
-                }, 1500);
-            });
-        });
-    }
-
-    // ============== PERFORMANCE OPTIMIZATION ==============
-    // Lazy load images (already using loading="lazy" in HTML)
-    
-    // Keyboard accessibility for mobile menu
+    // ============== KEYBOARD ACCESSIBILITY ==============
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape" && mobileMenu.classList.contains('active')) {
             closeMobileMenu();
         }
     });
 
-    // ============== FINAL MESSAGE ==============
-    console.log('%c✅ NightRolls & Plates Website Loaded Successfully!', 
-        'color: #FF6B00; font-size: 16px; font-weight: bold;');
-    console.log('%cMobile menu is smooth & ready | Fast loading | SEO Optimized', 
-        'color: #666; font-size: 14px;');
+    // ============== MENU ITEM HOVER ANIMATION (Optional Enhancement) ==============
+    const menuItems = document.querySelectorAll('.menu-item');
 
+    menuItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateX(8px)';
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateX(0)';
+        });
+    });
+
+    // ============== PERFORMANCE & SEO MESSAGE ==============
+    console.log('%c✅ NightRolls & Plates - Premium Website Loaded Successfully!', 
+        'color: #FF6B00; font-size: 16px; font-weight: bold;');
+
+    console.log('%cMobile Menu: Smooth | Scroll: Enhanced | Performance: Optimized', 
+        'color: #555; font-size: 14px;');
+
+    // Optional: Add to cart simulation for future
+    console.log('%cTip: You can easily add "Add to Cart" functionality later.', 
+        'color: #888; font-size: 13px;');
 });
