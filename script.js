@@ -1,4 +1,4 @@
-// script.js - NightRolls & Plates (Premium Version)
+// script.js - NightRolls & Plates (Premium Food Website)
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -9,29 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
     // Open Mobile Menu
-    const openMobileMenu = () => {
+    function openMobileMenu() {
         mobileMenu.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling behind menu
-    };
+        document.body.style.overflow = 'hidden';
+    }
 
     // Close Mobile Menu
-    const closeMobileMenu = () => {
+    function closeMobileMenu() {
         mobileMenu.classList.remove('active');
         document.body.style.overflow = 'visible';
-    };
+    }
 
-    // Event Listeners for Mobile Menu
     hamburger.addEventListener('click', openMobileMenu);
     closeMenuBtn.addEventListener('click', closeMobileMenu);
 
-    // Close menu when clicking any link
+    // Close menu when clicking any mobile link
     mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            closeMobileMenu();
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 
-    // Close menu when clicking outside the menu content
+    // Close menu when clicking outside
     mobileMenu.addEventListener('click', (e) => {
         if (e.target === mobileMenu) {
             closeMobileMenu();
@@ -39,24 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============== SMOOTH SCROLLING ==============
-    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+    const allLinks = document.querySelectorAll('a[href^="#"]');
 
-    smoothScrollLinks.forEach(link => {
+    allLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
 
             if (targetId === '#' || targetId === '') return;
 
-            const targetElement = document.querySelector(targetId);
+            const targetSection = document.querySelector(targetId);
 
-            if (targetElement) {
+            if (targetSection) {
                 e.preventDefault();
 
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const headerOffset = document.querySelector('.header').offsetHeight + 30;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
                 window.scrollTo({
-                    top: targetPosition - headerHeight - 30,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
@@ -65,50 +63,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ============== HEADER SCROLL EFFECT ==============
     const header = document.querySelector('.header');
-    let lastScrollTop = 0;
+    let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const currentScroll = window.scrollY;
 
-        if (scrollTop > lastScrollTop && scrollTop > 150) {
-            // Scrolling down - slightly hide header
-            header.style.transform = 'translateY(-15px)';
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            header.style.transform = 'translateY(-12px)';
         } else {
-            // Scrolling up - show header
             header.style.transform = 'translateY(0)';
         }
 
-        lastScrollTop = scrollTop;
+        lastScroll = currentScroll;
     });
 
-    // ============== KEYBOARD ACCESSIBILITY ==============
+    // ============== FOOD CARD HOVER ENHANCEMENT ==============
+    const menuCards = document.querySelectorAll('.menu-card');
+
+    menuCards.forEach((card, index) => {
+        // Staggered animation on load
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(40px)';
+
+        setTimeout(() => {
+            card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
+            card.style.transitionDelay = `${index * 80}ms`;
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 300);
+    });
+
+    // ============== FEATURED ITEM ANIMATION ==============
+    const featuredItem = document.querySelector('.featured-item');
+    
+    if (featuredItem) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    featuredItem.style.opacity = '1';
+                    featuredItem.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        featuredItem.style.opacity = '0';
+        featuredItem.style.transform = 'translateY(30px)';
+        featuredItem.style.transition = 'all 0.8s ease';
+
+        observer.observe(featuredItem);
+    }
+
+    // ============== KEYBOARD SUPPORT ==============
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape" && mobileMenu.classList.contains('active')) {
             closeMobileMenu();
         }
     });
 
-    // ============== MENU ITEM HOVER ANIMATION (Optional Enhancement) ==============
-    const menuItems = document.querySelectorAll('.menu-item');
-
-    menuItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'translateX(8px)';
-        });
-
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'translateX(0)';
-        });
-    });
-
-    // ============== PERFORMANCE & SEO MESSAGE ==============
-    console.log('%c✅ NightRolls & Plates - Premium Website Loaded Successfully!', 
+    // ============== FINAL CONSOLE MESSAGE ==============
+    console.log('%c✅ NightRolls & Plates - Premium Late Night Food Website Loaded!', 
         'color: #FF6B00; font-size: 16px; font-weight: bold;');
 
-    console.log('%cMobile Menu: Smooth | Scroll: Enhanced | Performance: Optimized', 
-        'color: #555; font-size: 14px;');
+    console.log('%cHero Background + Food Animations + Smooth Mobile Menu Active', 
+        'color: #666; font-size: 14px;');
 
-    // Optional: Add to cart simulation for future
-    console.log('%cTip: You can easily add "Add to Cart" functionality later.', 
-        'color: #888; font-size: 13px;');
 });
