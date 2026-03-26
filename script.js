@@ -1,4 +1,4 @@
-// script.js - NightRolls & Plates (Premium Food Website)
+// script.js - NightRolls & Plates (Premium Version)
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.addEventListener('click', openMobileMenu);
     closeMenuBtn.addEventListener('click', closeMobileMenu);
 
-    // Close menu when clicking any mobile link
+    // Close menu when clicking any link
     mobileLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
@@ -49,12 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetSection) {
                 e.preventDefault();
 
-                const headerOffset = document.querySelector('.header').offsetHeight + 30;
-                const elementPosition = targetSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                const headerHeight = document.querySelector('.header').offsetHeight + 40;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY;
 
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: targetPosition - headerHeight,
                     behavior: 'smooth'
                 });
             }
@@ -68,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
 
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            header.style.transform = 'translateY(-12px)';
+        if (currentScroll > lastScroll && currentScroll > 120) {
+            header.style.transform = 'translateY(-15px)';
         } else {
             header.style.transform = 'translateY(0)';
         }
@@ -77,54 +76,53 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     });
 
-    // ============== FOOD CARD HOVER ENHANCEMENT ==============
+    // ============== STAGGERED ANIMATION FOR MENU CARDS ==============
     const menuCards = document.querySelectorAll('.menu-card');
 
     menuCards.forEach((card, index) => {
-        // Staggered animation on load
         card.style.opacity = '0';
         card.style.transform = 'translateY(40px)';
 
         setTimeout(() => {
             card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
-            card.style.transitionDelay = `${index * 80}ms`;
+            card.style.transitionDelay = `${index * 60}ms`;
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-        }, 300);
+        }, 400);
     });
 
     // ============== FEATURED ITEM ANIMATION ==============
     const featuredItem = document.querySelector('.featured-item');
-    
+
     if (featuredItem) {
+        featuredItem.style.opacity = '0';
+        featuredItem.style.transform = 'translateY(30px)';
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    featuredItem.style.transition = 'all 0.9s ease';
                     featuredItem.style.opacity = '1';
                     featuredItem.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.2 });
-
-        featuredItem.style.opacity = '0';
-        featuredItem.style.transform = 'translateY(30px)';
-        featuredItem.style.transition = 'all 0.8s ease';
+        }, { threshold: 0.25 });
 
         observer.observe(featuredItem);
     }
 
-    // ============== KEYBOARD SUPPORT ==============
+    // ============== KEYBOARD SUPPORT (ESC to close menu) ==============
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape" && mobileMenu.classList.contains('active')) {
             closeMobileMenu();
         }
     });
 
-    // ============== FINAL CONSOLE MESSAGE ==============
-    console.log('%c✅ NightRolls & Plates - Premium Late Night Food Website Loaded!', 
+    // ============== FINAL MESSAGE ==============
+    console.log('%c✅ NightRolls & Plates - Premium Late Night Food Website Loaded Successfully!', 
         'color: #FF6B00; font-size: 16px; font-weight: bold;');
 
-    console.log('%cHero Background + Food Animations + Smooth Mobile Menu Active', 
-        'color: #666; font-size: 14px;');
+    console.log('%cMobile Menu Smooth | Scroll Enhanced | Menu Animations Active', 
+        'color: #555; font-size: 14px;');
 
 });
